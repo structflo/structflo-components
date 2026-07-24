@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Shared presentational visualizations for the DAIKON app suite.",
   "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/sidxz/structflo-components" },
+  "repository": { "type": "git", "url": "https://github.com/structflo/structflo-components" },
   "type": "module",
   "exports": {
     "./target-biology": "./src/target-biology/index.ts"
