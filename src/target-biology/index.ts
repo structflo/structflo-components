@@ -1,5 +1,5 @@
 // Public surface of the target-biology visuals. Consumers import from
-// "@structflo/daikon-ui/target-biology" — never a deeper path.
+// "@structflo/components/target-biology" — never a deeper path.
 export { EssentialityCallScale } from "./essentiality-call-scale";
 export { VulnerabilityPanel } from "./vulnerability-panel";
 export { ResistanceLollipop } from "./resistance-lollipop";

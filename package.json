@@ -1,9 +1,9 @@
 {
-  "name": "@structflo/daikon-ui",
+  "name": "@structflo/components",
   "version": "0.1.0",
   "description": "Shared presentational visualizations for the DAIKON app suite.",
   "license": "MIT",
-  "repository": { "type": "git", "url": "https://github.com/sidxz/daikon-ui" },
+  "repository": { "type": "git", "url": "https://github.com/sidxz/structflo-components" },
   "type": "module",
   "exports": {
     "./target-biology": "./src/target-biology/index.ts"

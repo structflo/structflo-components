@@ -1,4 +1,4 @@
-# @structflo/daikon-ui
+# @structflo/components
 
 Shared presentational visualizations for the DAIKON app suite. Components take
 plain data via props and render — no data fetching, no auth, no stores. Colors
@@ -8,7 +8,7 @@ inherits whichever app's theme it renders in.
 
 ## Exports
 
-- `@structflo/daikon-ui/target-biology` — `EssentialityCallScale`,
+- `@structflo/components/target-biology` — `EssentialityCallScale`,
   `VulnerabilityPanel`, `ResistanceLollipop`, plus the `*Like` prop types and the
   `essentialityBucket` / `ESSENTIALITY_STYLE` helpers.
 
@@ -19,13 +19,13 @@ API DTOs. Map your data into that shape before passing it.
 
 This is a standalone repo. Until it is published to npm, each app consumes it by
 file reference to a local checkout sitting beside it
-(`link:../../daikon-ui`); after publish, that becomes `^0.1.0`.
+(`link:../../structflo-components`); after publish, that becomes `^0.1.0`.
 
 The package ships raw `.tsx` — no build step. Each Next app must:
 
-1. depend on it (`link:../../daikon-ui` today, `^0.1.0` once published)
-2. add `transpilePackages: ["@structflo/daikon-ui"]` to `next.config.ts`
-3. add `@source "../../node_modules/@structflo/daikon-ui/src";` to the Tailwind
+1. depend on it (`link:../../structflo-components` today, `^0.1.0` once published)
+2. add `transpilePackages: ["@structflo/components"]` to `next.config.ts`
+3. add `@source "../../node_modules/@structflo/components/src";` to the Tailwind
    entry CSS — **Tailwind v4 does not scan `node_modules`, so without this every
    class in the package is silently dropped and the charts render unstyled.**
 4. **while consumed by `link:`** (real path outside the app's project root), set

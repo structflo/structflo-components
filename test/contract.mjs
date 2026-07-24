@@ -1,4 +1,4 @@
-// Contract check for @structflo/daikon-ui. Mirrors daikon-design-tokens'
+// Contract check for @structflo/components. Mirrors daikon-design-tokens'
 // contract test: it must fail the build if the public surface breaks, so a
 // broken subpath or a dropped export can never be published.
 import { existsSync, readFileSync } from "node:fs";
