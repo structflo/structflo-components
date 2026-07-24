@@ -1,0 +1,38 @@
+name: Publish
+
+# Tag a release (e.g. `git tag v0.1.0 && git push --tags`) to publish to npm.
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write # npm provenance via GitHub OIDC (trusted publishing)
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          registry-url: https://registry.npmjs.org
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Contract check
+        run: pnpm contract
+
+      - name: Unit tests
+        run: pnpm test
+
+      - name: Publish @structflo/components
+        run: npm publish --provenance --access public
