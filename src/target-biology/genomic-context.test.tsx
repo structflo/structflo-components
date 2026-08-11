@@ -18,6 +18,11 @@ describe("GenomicContext", () => {
     expect(screen.getByText("Rv1908c")).toBeTruthy(); // current gene label always shows
   });
 
+  it("renders the essentiality legend alongside a valid track", () => {
+    render(<GenomicContext centerId="g1" neighbors={neighbors} />);
+    expect(screen.getByLabelText("Essentiality legend")).toBeTruthy();
+  });
+
   it("renders nothing with fewer than two placeable neighbors", () => {
     const { container } = render(
       <GenomicContext centerId="g1" neighbors={[neighbors[0]]} />,
