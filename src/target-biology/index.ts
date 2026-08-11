@@ -12,5 +12,3 @@ export type { EssentialityBucket, EssentialityLike } from "./essentiality";
 export type { VulnerabilityLike } from "./vulnerability";
 export type { MutationLike } from "./resistance";
 export type { GenomicNeighborLike } from "./genomic-context";
-export { layoutNeighbors } from "./genome-track";
-export type { PositionedGene, TrackGene } from "./genome-track";
