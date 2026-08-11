@@ -1,6 +1,6 @@
 {
   "name": "@structflo/components",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Shared presentational visualizations for the DAIKON app suite.",
   "license": "MIT",
   "repository": { "type": "git", "url": "https://github.com/structflo/structflo-components" },
