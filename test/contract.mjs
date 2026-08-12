@@ -16,15 +16,30 @@ for (const [sub, target] of Object.entries(pkg.exports)) {
 
 // 2. The public surface actually re-exports the names consumers import.
 const index = readFileSync(resolve(root, "src/target-biology/index.ts"), "utf8");
+// Anything a consumer imports belongs here — this list is what stops a rename or a
+// tidy-up from silently breaking an app that does not live in this repo.
 const required = [
+  // charts
   "EssentialityCallScale",
   "VulnerabilityPanel",
   "ResistanceLollipop",
+  "GenomicContext",
+  // record shapes
   "EssentialityLike",
   "VulnerabilityLike",
   "MutationLike",
+  "GenomicNeighborLike",
+  // fitness-axis vocabulary, shared so a legend cannot drift from a scale
   "essentialityBucket",
   "ESSENTIALITY_STYLE",
+  // the summaries behind the two headline charts — daikon's gene Overview states these
+  // above the charts themselves, so they have to stay reachable
+  "essentialityConsensus",
+  "vulnerabilitySummary",
+  "buildForestRows",
+  "EssentialityConsensus",
+  "VulnerabilitySummary",
+  "ForestRow",
 ];
 for (const name of required) {
   if (!index.includes(name)) errors.push(`src/target-biology/index.ts does not export ${name}`);
