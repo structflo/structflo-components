@@ -1,5 +1,7 @@
 "use client";
 
+import { Fragment } from "react";
+
 import { cn } from "../lib/cn";
 import {
   ESSENTIALITY_STYLE,
@@ -142,33 +144,27 @@ export function EssentialityCallScale({ records }: { records: EssentialityLike[]
             by condition × method
           </span>
           <div className="overflow-x-auto">
-            <div className="inline-grid gap-0.5">
-              {/* header row: blank corner + condition labels */}
-              <div
-                className="grid items-end gap-0.5"
-                style={{
-                  gridTemplateColumns: `minmax(3.5rem,auto) repeat(${pivot.conditions.length}, minmax(2.5rem,1fr))`,
-                }}
-              >
-                <span />
-                {pivot.conditions.map((c) => (
-                  <span
-                    key={c}
-                    className="truncate text-center font-sans text-[0.625rem] text-muted-foreground"
-                    title={c}
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
-              {pivot.methods.map((m) => (
-                <div
-                  key={m}
-                  className="grid items-center gap-0.5"
-                  style={{
-                    gridTemplateColumns: `minmax(3.5rem,auto) repeat(${pivot.conditions.length}, minmax(2.5rem,1fr))`,
-                  }}
+            {/* ONE grid, rows auto-flowed — nested per-row grids each resolved their own
+                `auto` label column, so rows with labels of different widths staggered
+                their cells against each other and the header. Shared tracks can't. */}
+            <div
+              className="inline-grid items-center gap-0.5"
+              style={{
+                gridTemplateColumns: `minmax(3.5rem,auto) repeat(${pivot.conditions.length}, minmax(2.5rem,1fr))`,
+              }}
+            >
+              <span />
+              {pivot.conditions.map((c) => (
+                <span
+                  key={c}
+                  className="truncate text-center font-sans text-[0.625rem] text-muted-foreground"
+                  title={c}
                 >
+                  {c}
+                </span>
+              ))}
+              {pivot.methods.map((m) => (
+                <Fragment key={m}>
                   <span
                     className="truncate pr-1 text-right font-sans text-[0.625rem] text-muted-foreground"
                     title={m}
@@ -178,7 +174,7 @@ export function EssentialityCallScale({ records }: { records: EssentialityLike[]
                   {pivot.conditions.map((c) => (
                     <StripCell key={`${c} ${m}`} bucket={pivot.cell(c, m)} />
                   ))}
-                </div>
+                </Fragment>
               ))}
             </div>
           </div>
