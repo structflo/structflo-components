@@ -11,6 +11,28 @@ inherits whichever app's theme it renders in.
 - `@structflo/components/target-biology` — `EssentialityCallScale`,
   `VulnerabilityPanel`, `ResistanceLollipop`, plus the `*Like` prop types and the
   `essentialityBucket` / `ESSENTIALITY_STYLE` helpers.
+- `@structflo/components/dose-response` — `DoseResponseChartView` (the full
+  chart: display toggles, PNG/SVG export, plot, summary cards),
+  `DoseResponseFigure` (fixed-size single curve, four presets),
+  `DoseResponseSummaryCard`, the `buildDoseResponsePlot` builder behind them,
+  the `CurveLike` / `CurveSnapshot` shapes, the shared 4PL evaluator and the
+  `interceptLabel` vocabulary.
+
+  Both renderers take the host's Plotly component as a `plot` prop —
+  `plotly.js` touches `document` at import, so each app already owns a
+  client-only wrapper (`next/dynamic` with `ssr: false`), and taking it as a
+  prop keeps this package free of `next`, `react-plotly.js` and `plotly.js`:
+
+  ```tsx
+  import { Plot } from "@/shared/lib/plotly";
+  <DoseResponseChartView curves={curves} plot={Plot} />
+  ```
+
+  An app that *edits* curves (point exclusion, refit) keeps its session,
+  mutations and chrome in its own shell and drives this same view through
+  `controlsSlot` / `barSlot` / `plotWrapper` / `footerSlot` and the `edit`
+  overlay. There is deliberately no second renderer: a read-only copy is how
+  the same curve came to look different on two pages.
 
 Props are typed against hand-written `*Like` interfaces, not any app's generated
 API DTOs. Map your data into that shape before passing it.
