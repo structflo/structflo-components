@@ -124,14 +124,14 @@ describe("<DoseResponseChartView />", () => {
       const { unmount } = render(
         <DoseResponseChartView curves={[CURVE]} plot={Plot} edit={edit} />,
       );
-      expect(plotCalls.at(-1)?.onClick).toBeUndefined();
+      expect(plotCalls[plotCalls.length - 1]?.onClick).toBeUndefined();
       unmount();
 
       const onPointClick = vi.fn();
       render(
         <DoseResponseChartView curves={[CURVE]} plot={Plot} edit={{ ...edit, onPointClick }} />,
       );
-      const onClick = plotCalls.at(-1)?.onClick;
+      const onClick = plotCalls[plotCalls.length - 1]?.onClick;
       expect(onClick).toBeDefined();
 
       // A click resolves through the clicked trace's captured-index order to
